@@ -38,10 +38,11 @@ class HomeScreen extends StatelessWidget {
                     physics: BouncingScrollPhysics(),
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                    ),
+                            crossAxisCount: 2,
+                            mainAxisSpacing: 50,
+                            crossAxisSpacing: 10),
                     itemBuilder: (context, index) =>
-                        newCard(model: snapshot.data![index]),
+                        newCard(context: context, model: snapshot.data![index]),
                   );
                 } else {
                   return const Center(
