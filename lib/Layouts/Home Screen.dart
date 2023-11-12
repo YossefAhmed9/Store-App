@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/components/new%20card.dart';
 import 'package:store_app/services/getAllproducts.dart';
 
+import '../components/components.dart';
 import '../models/product model.dart';
 
 class HomeScreen extends StatelessWidget {

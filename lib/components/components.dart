@@ -5,7 +5,7 @@ import 'package:store_app/models/product%20model.dart';
 Widget newCard({required ProductModel model, required BuildContext context}) =>
     GestureDetector(
       onTap: () {
-        navigateTo(context, const UpdateProduct());
+        navigateTo(context, UpdateProduct());
       },
       child: Column(
         children: [
@@ -78,7 +78,7 @@ Widget newCard({required ProductModel model, required BuildContext context}) =>
     );
 
 class DefaultTextFormField {
-  //final Key? key;
+  final Key? key;
   final TextInputType keyboard;
   final TextEditingController controller;
   Function? submit;
@@ -90,7 +90,7 @@ class DefaultTextFormField {
   final Function(String?)? validate;
 
   DefaultTextFormField(
-    // this.key,
+    this.key,
     this.submit,
     this.change,
     this.tap,
@@ -104,7 +104,7 @@ class DefaultTextFormField {
 }
 
 Widget defaultTextFormField(
-  // final Key? key,
+  final Key? key,
   final TextInputType keyboard,
   final TextEditingController controller,
   final Function(String?) submit,
@@ -115,19 +115,21 @@ Widget defaultTextFormField(
   final Icon prefix,
   final FormFieldValidator<String>? validate,
 ) =>
-    TextFormField(
-      //key: key,
-      keyboardType: keyboard,
-      controller: controller,
-      onFieldSubmitted: submit,
-      onChanged: change,
-      onTap: tap,
-      validator: validate,
-
-      decoration: InputDecoration(
-        labelText: label,
-        border: border,
-        prefixIcon: prefix,
+    Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: TextFormField(
+        key: key,
+        keyboardType: keyboard,
+        controller: controller,
+        onFieldSubmitted: submit,
+        onChanged: change,
+        onTap: tap,
+        validator: validate,
+        decoration: InputDecoration(
+          labelText: label,
+          border: border,
+          prefixIcon: prefix,
+        ),
       ),
     );
 
