@@ -86,7 +86,7 @@ class DefaultTextFormField {
   Function? tap;
   final String label;
   final OutlinedBorder border;
-  final Icon prefix;
+  //final Icon prefix;
   final Function(String?)? validate;
 
   DefaultTextFormField(
@@ -99,7 +99,7 @@ class DefaultTextFormField {
     required this.controller,
     required this.label,
     required this.border,
-    required this.prefix,
+    // required this.prefix,
   });
 }
 
@@ -112,7 +112,7 @@ Widget defaultTextFormField(
   final GestureTapCallback? tap,
   final String label,
   final InputBorder border,
-  final Icon prefix,
+  //final Icon prefix,
   final FormFieldValidator<String>? validate,
 ) =>
     Padding(
@@ -128,7 +128,7 @@ Widget defaultTextFormField(
         decoration: InputDecoration(
           labelText: label,
           border: border,
-          prefixIcon: prefix,
+          //prefixIcon: prefix,
         ),
       ),
     );
