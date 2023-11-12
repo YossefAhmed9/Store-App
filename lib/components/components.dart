@@ -5,7 +5,7 @@ import 'package:store_app/models/product%20model.dart';
 Widget newCard({required ProductModel model, required BuildContext context}) =>
     GestureDetector(
       onTap: () {
-        navigateTo(context, UpdateProduct());
+        navigateTo(context, const UpdateProduct());
       },
       child: Column(
         children: [
