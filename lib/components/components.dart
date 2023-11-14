@@ -2,80 +2,89 @@ import 'package:flutter/material.dart';
 import 'package:store_app/Layouts/Update%20product.dart';
 import 'package:store_app/models/product%20model.dart';
 
-Widget newCard({required ProductModel model, required BuildContext context}) =>
-    GestureDetector(
-      onTap: () {
-        navigateTo(context, UpdateProduct());
-      },
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 32,
-          ),
-          Stack(
-            clipBehavior: Clip.none,
-            children: [
-              Card(
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                elevation: 5.0,
-                child: Padding(
-                  padding: const EdgeInsets.all(9.0),
-                  child: Row(
-                    children: [
-                      Column(
-                        children: [
-                          const SizedBox(
-                            height: 70,
-                          ),
-                          Text(
-                            model.title.substring(0, 18),
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14,
-                              overflow: TextOverflow.ellipsis,
-                              color: Colors.black,
+class Product {
+  Widget newCard(
+          {required ProductModel model, required BuildContext context}) =>
+      GestureDetector(
+        onTap: () {
+          navigateTo(
+              context,
+              UpdateProduct(
+                  title: model.title,
+                  price: model.price,
+                  description: model.description,
+                  image: model.image));
+        },
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 32,
+            ),
+            Stack(
+              clipBehavior: Clip.none,
+              children: [
+                Card(
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  elevation: 5.0,
+                  child: Padding(
+                    padding: const EdgeInsets.all(9.0),
+                    child: Row(
+                      children: [
+                        Column(
+                          children: [
+                            const SizedBox(
+                              height: 70,
                             ),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                            softWrap: true,
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                '${model.price} \$',
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 20,
-                                    color: Colors.black),
+                            Text(
+                              model.title.substring(0, 18),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14,
+                                overflow: TextOverflow.ellipsis,
+                                color: Colors.black,
                               ),
-                              IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(
-                                    Icons.favorite,
-                                    color: Colors.red,
-                                  )),
-                            ],
-                          )
-                        ],
-                      ),
-                    ],
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              softWrap: true,
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  '${model.price} \$',
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 20,
+                                      color: Colors.black),
+                                ),
+                                IconButton(
+                                    onPressed: () {},
+                                    icon: const Icon(
+                                      Icons.favorite,
+                                      color: Colors.red,
+                                    )),
+                              ],
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Positioned(
-                right: 50,
-                bottom: 100,
-                child: Image.network(
-                  model.image,
-                  width: 105,
-                  height: 105,
+                Positioned(
+                  right: 50,
+                  bottom: 100,
+                  child: Image.network(
+                    model.image,
+                    width: 105,
+                    height: 105,
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
+              ],
+            ),
+          ],
+        ),
+      );
+}
 
 class DefaultTextFormField {
   final Key? key;
@@ -86,6 +95,7 @@ class DefaultTextFormField {
   Function? tap;
   final String label;
   final OutlinedBorder border;
+
   //final Icon prefix;
   final Function(String?)? validate;
 
@@ -141,16 +151,17 @@ class DefaultButton {
   final Function function;
   final String text;
   final Color textColor;
+  final double? fontSize;
 
   //Constructor
-  DefaultButton({
-    required this.width,
-    required this.height,
-    required this.buttonColor,
-    required this.function,
-    required this.text,
-    required this.textColor,
-  });
+  DefaultButton(
+      {required this.width,
+      required this.height,
+      required this.buttonColor,
+      required this.function,
+      required this.text,
+      required this.textColor,
+      required this.fontSize});
 }
 
 Widget defaultButton(
@@ -160,6 +171,7 @@ Widget defaultButton(
   final Function,
   final String text,
   final Color textColor,
+  final double? fontSize,
 ) =>
     Container(
       width: width,
@@ -173,6 +185,7 @@ Widget defaultButton(
           text,
           style: TextStyle(
             color: textColor,
+            fontSize: fontSize,
           ),
         ),
       ),
@@ -185,6 +198,9 @@ void navigateAndDelPast(context, screen) {
   });
 }
 
-void navigateTo(context, screen) {
+void navigateTo(
+  context,
+  screen,
+) {
   Navigator.push(context, MaterialPageRoute(builder: (context) => screen));
 }

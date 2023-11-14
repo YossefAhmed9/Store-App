@@ -10,7 +10,7 @@ class putService {
       required String image,
       required String category}) async {
     http.Response response = await http
-        .post(Uri.parse('https://fakestoreapi.com/products/:id'), body: {
+        .put(Uri.parse('https://fakestoreapi.com/products/:id'), body: {
       'title': title,
       'price': price,
       'description': description,
@@ -22,8 +22,8 @@ class putService {
       'Accept': 'application/json'
     });
 
-    dynamic data = jsonDecode(response.body);
-
+    dynamic data = await jsonDecode(response.body);
+    print('this is the response $response');
     return data;
   }
 }

@@ -41,8 +41,10 @@ class HomeScreen extends StatelessWidget {
                             crossAxisCount: 2,
                             mainAxisSpacing: 50,
                             crossAxisSpacing: 10),
-                    itemBuilder: (context, index) =>
-                        newCard(context: context, model: snapshot.data![index]),
+                    itemBuilder: (context, index) => Product().newCard(
+                      context: context,
+                      model: snapshot.data![index],
+                    ),
                   );
                 } else {
                   return const Center(
