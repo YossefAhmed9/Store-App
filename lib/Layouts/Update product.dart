@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../components/components.dart';
+import '../models/product model.dart';
 import '../services/put service.dart';
 
 class UpdateProduct extends StatelessWidget {
-  const UpdateProduct(
-      {required String title,
-      required dynamic price,
-      required String description,
-      required String image});
+  const UpdateProduct();
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +19,7 @@ class UpdateProduct extends StatelessWidget {
     var updateDesc = GlobalKey<FormState>();
     var scaffoldKey = GlobalKey<ScaffoldState>();
     putService updateFunction = putService();
-
+    Object? args = ModalRoute.of(context)?.settings.arguments as ProductModel;
     return Scaffold(
       appBar: AppBar(
         key: scaffoldKey,
@@ -39,11 +36,11 @@ class UpdateProduct extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               children: [
                 defaultTextFormField(
-                    updateName, TextInputType.text, ProductNameController,
+                    updateName,
+                    TextInputType.text,
+                    ProductNameController,
                     //submit
-                    (value) {
-                  print(value);
-                },
+                    (value) {},
                     //change
                     (value) {
                   print(value);
@@ -106,14 +103,24 @@ class UpdateProduct extends StatelessWidget {
                       borderRadius: BorderRadius.circular(25),
                       color: Colors.purple),
                   child: defaultButton(200, 70, Colors.transparent, () {
-                    updateFunction
-                        .putMethod(
-                            title: ProductNameController.toString(),
-                            price: ProductPriceController.toString(),
-                            description: ProductDescController.toString(),
-                            image: ProductPhotoController.toString(),
-                            category: 'electronic')
-                        .then((value) => Navigator.pop(context));
+                    try {
+                      updateFunction
+                          .putMethod(
+                              title: ProductNameController.toString(),
+                              price: ProductPriceController.toString(),
+                              description: ProductDescController.toString(),
+                              image: ProductPhotoController.toString(),
+                              category: 'electronic')
+                          .then((value) {
+                        print(
+                            '${updateFunction.putMethod(title: ProductNameController.toString(), price: ProductPriceController.toString(), description: ProductDescController.toString(), image: ProductPhotoController.toString(), category: 'electronic')}');
+                        Navigator.pop(context);
+                        print(value);
+                      });
+                    } catch (error) {
+                      print('this is the error:${error.runtimeType} ');
+                      print('this is the error:${error.toString()} ');
+                    }
                     print('this is the product: ');
                   }, 'Update Now!', Colors.white, 20),
                 )

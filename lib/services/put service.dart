@@ -10,7 +10,7 @@ class putService {
       required String image,
       required String category}) async {
     http.Response response = await http
-        .put(Uri.parse('https://fakestoreapi.com/products/:id'), body: {
+        .put(Uri.parse('https://fakestoreapi.com/products/id'), body: {
       'title': title,
       'price': price,
       'description': description,

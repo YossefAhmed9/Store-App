@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/Layouts/Update%20product.dart';
 import 'package:store_app/models/product%20model.dart';
 
 class Product {
@@ -7,13 +6,7 @@ class Product {
           {required ProductModel model, required BuildContext context}) =>
       GestureDetector(
         onTap: () {
-          navigateTo(
-              context,
-              UpdateProduct(
-                  title: model.title,
-                  price: model.price,
-                  description: model.description,
-                  image: model.image));
+          Navigator.pushNamed(context, 'UpdateProduct', arguments: model);
         },
         child: Column(
           children: [
